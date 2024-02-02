@@ -1,5 +1,6 @@
 package com.product.product.controller;
 
+import com.product.product.model.Features;
 import com.product.product.model.Products;
 import com.product.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,16 @@ public class ProductsController {
     @DeleteMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id){
         return productService.deleteProduct(id);
+    }
+
+    @PostMapping("/addFeature/{productId}")
+    public Features addFeature(@PathVariable int productId ,@RequestBody Features features ){
+        return productService.addFeature(productId,features);
+    }
+
+    @GetMapping("/viewFeaturesByProductId/{productId}")
+    public List<Features> viewFeaturesByProductId(@PathVariable int productId){
+        return productService.getFeaturesByProductId(productId);
     }
 
 

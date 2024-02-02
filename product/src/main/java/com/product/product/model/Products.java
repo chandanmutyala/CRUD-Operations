@@ -1,12 +1,12 @@
 package com.product.product.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -21,6 +21,10 @@ public class Products {
     private String name;
     private int quantity;
     private double price;
+
+
+    @OneToMany(mappedBy ="products", cascade=CascadeType.ALL)
+    public List<Features> features =new ArrayList<>();
 
     public int getId() {
         return id;
@@ -52,5 +56,13 @@ public class Products {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<Features> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Features> features) {
+        this.features = features;
     }
 }
